@@ -13,24 +13,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by mccomackjp on 4/27/2016.
+ * The FoodList class organizes a list of food items.
  */
 public class FoodList {
 
+    /**
+     * List of food items.
+     */
     private List<Food> foodList;
 
+    /**
+     * Array of available store departments.
+     */
     private static String[] departments;
 
+    /**
+     * Constructs a FoodList object.
+     */
     public FoodList(){
         foodList = new ArrayList<>();
         departments = new String[]{"pharmacy", "produce", "bulk", "floral", "hotfood", "bakery",
                 "deli", "cheeseshop", "meats", "dairy", "frozen", "glutenfree", "liquor"};
     }
 
+    /**
+     * Checks if the FoodList contains a specific food item.
+     * @param food item to be checked.
+     * @return true if the FoodList contains the food item.
+     */
     public boolean contains(Food food){
         return foodList.contains(food);
     }
 
+    /**
+     * Checks if the FoodList contains a food item by name.
+     * @param foodName name of the food item to be checked.
+     * @return true if the FoodList contains the food item.
+     */
     public boolean contains (String foodName){
         foodName = foodName.trim();
         boolean found = false;
@@ -43,6 +62,10 @@ public class FoodList {
         return found;
     }
 
+    /**
+     * Adds a food item to the FoodList.
+     * @param food item to be added.
+     */
     public void add(Food food){
         if (foodList.size()==0){
             foodList.add(food);
@@ -56,10 +79,20 @@ public class FoodList {
         }
     }
 
+    /**
+     * Gets a Food object from the FoodList by index.
+     * @param index of the Food object.
+     * @return Food object.
+     */
     public Food get(int index){
         return foodList.get(index);
     }
 
+    /**
+     * Gets a Food object from the FoodList by name.
+     * @param foodName name of the Food object to be returned.
+     * @return Food object within the list, or null if no Food object is found.
+     */
     public Food get(String foodName){
         Food food = null;
         foodName = foodName.trim();
@@ -71,18 +104,36 @@ public class FoodList {
         return food;
     }
 
+    /**
+     * Gets the size of the FoodList.
+     * @return int value of the size of the FoodList.
+     */
     public int size(){
         return foodList.size();
     }
 
+    /**
+     * Gets the priority of the Food object within the FoodList.
+     * @param food object to get priority.
+     * @return int priority of the food object.
+     */
     public int getPriority(Food food){
         return foodList.get(foodList.indexOf(food)).getPriority();
     }
 
+    /**
+     * Get the priority of the Food object by name.
+     * @param foodName String of the food's name.
+     * @return int priority of the Food object.
+     */
     public int getPriority(String foodName){
         return get(foodName).getPriority();
     }
 
+    /**
+     * Loads the FoodList from a file.
+     * @param file of the FoodList items.
+     */
     public void loadFoodList(File file){
         try (BufferedReader reader = new BufferedReader(new FileReader(file))){
             String line;
@@ -99,6 +150,11 @@ public class FoodList {
         }
     }
 
+    /**
+     * Parses a String into a Food object.
+     * @param line String information of a Food object.
+     * @return Food Object.
+     */
     public static Food parseLine(String line){
         Food food = null;
         int quantity = -1;
@@ -139,6 +195,10 @@ public class FoodList {
         return food;
     }
 
+    /**
+     * Saves the FoodList to a file.
+     * @param file to save the FoodList.
+     */
     public void saveFoodList(File file){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (Food food: foodList){
@@ -150,6 +210,11 @@ public class FoodList {
         }
     }
 
+    /**
+     * Checks if the String is a valid department.
+     * @param word String to be checked.
+     * @return true if the word is a valid department.
+     */
     public static boolean isDepartment(String word){
         boolean isDepartment = false;
         if (isInteger(word)){
@@ -164,6 +229,11 @@ public class FoodList {
         return isDepartment;
     }
 
+    /**
+     * Checks if a string is an Integer.
+     * @param word String to be checked.
+     * @return true if the String has an Integer value.
+     */
     public static boolean isInteger(String word){
         boolean isInteger = true;
         try {
@@ -176,6 +246,10 @@ public class FoodList {
 
     }
 
+    /**
+     * Shows a popup displaying any errors encountered.
+     * @param message to be displayed.
+     */
     private void errorMessage(String message) {
         JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
