@@ -1,7 +1,7 @@
 package grocery;
 
 /**
- * Created by mccomackjp on 4/23/2016.
+ * Launches the GroceryListOptimizer app.
  */
 public class Driver {
 

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Created by mccomackjp on 4/23/2016.
+ * The GroceryListOptimizer will optimize a grocery list based on the order of aile.
  */
 public class GroceryListOptimizer extends JFrame {
 
